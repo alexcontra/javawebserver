@@ -25,7 +25,8 @@ public class HttpConnectionWorkThread extends Thread {
         try {
             inputStream = socket.getInputStream();
             outputStream = socket.getOutputStream();
-            //TODO PROCEED READING
+
+
             LOGGER.info("* CONNECTION ACCEPTED: " + socket.getInetAddress());
             //writing
             String html = "<html><head><title>VSS PROJECT</title></head><body><h1>CONTENT OF HTTP SERVER</h1></body></html>";

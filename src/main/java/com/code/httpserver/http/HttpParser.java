@@ -14,10 +14,14 @@ public class HttpParser {
     private static final int SP = 0x20; //SP 32
     private static final int CR = 0x0D; //CR 13
     private static final int LF = 0x0A; // LF 10
-    public HttpRequest parseHttpRequest(InputStream inputStream) throws IOException {
-        InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+    public HttpRequest parseHttpRequest(InputStream inputStream)  throws HttpPraseException{
+        InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.US_ASCII);
         HttpRequest request = new HttpRequest();
-        parserRequestLine(reader,request);
+        try {
+            parserRequestLine(reader,request);
+        } catch (IOException  e) {
+            e.printStackTrace();
+        }
         parseHeaders(reader,request);
         parseBody(reader,request);
         return  request;
@@ -28,14 +32,46 @@ public class HttpParser {
     private void parseHeaders(InputStreamReader inputStream, HttpRequest request) {
     }
 
-    private void parserRequestLine(InputStreamReader inputStream, HttpRequest request) throws IOException {
+    private void parserRequestLine(InputStreamReader reader, HttpRequest request) throws IOException, HttpPraseException {
+        StringBuilder processingData = new StringBuilder();
+        boolean methodParser= false;
+        boolean requestTargetParsed=false;
         int _bytes;
-        while ((_bytes=inputStream.read())>=0){
-            if(_bytes==CR){
-                _bytes = inputStream.read();
+        while ((_bytes=reader.read())>=0){
+            if(_bytes == CR){
+                _bytes = reader.read();
                 if(_bytes==LF){
+                    LOGGER.info("REQUEST LINE VERSION TO PROCESS : { } "+processingData.toString());
+                    if(!methodParser || !requestTargetParsed){
+                        throw new HttpPraseException(HttpStatusCodes.CLIENT_ERROR_400_BAD_REQUEST);
+                    }
                     return;
                 }
+            }
+            if(_bytes==SP){
+                if(!methodParser){
+
+                    LOGGER.info("REQUEST LINE TO PROCESS : { } "+processingData.toString());
+                    //clearing the buffer
+                    request.setMethod(processingData.toString());
+                    methodParser=true;
+                }else if(!requestTargetParsed)
+                {
+                    LOGGER.info("REQUEST TARGET TO PROCESS : { } "+processingData.toString());
+                    requestTargetParsed=true;
+                }
+                else {
+                    throw new HttpPraseException(HttpStatusCodes.CLIENT_ERROR_400_BAD_REQUEST);
+                }
+                processingData.delete(0,processingData.length());
+            }else
+            {
+                 processingData.append((char)_bytes);
+                 if(!methodParser){
+                     if(processingData.length()>HttpMethod.MAX_LENGTH){
+                         throw new HttpPraseException(HttpStatusCodes.SERVER_ERROR_501_NOT_IMPLEMENTED);
+                     }
+                 }
             }
         }
     }

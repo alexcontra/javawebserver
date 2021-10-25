@@ -12,7 +12,14 @@ public class HttpRequest extends HttpMessage{
         return method;
     }
 
-    void setMethod(HttpMethod method) {
-        this.method = method;
-    }
+    void setMethod(String methodName) throws HttpPraseException {
+        for(HttpMethod method : HttpMethod.values()){
+            if(methodName.equals(method.name())){
+                this.method=method;
+                return;
+            }
+        }
+        throw new HttpPraseException(HttpStatusCodes.SERVER_ERROR_501_NOT_IMPLEMENTED);
+
+        }
 }

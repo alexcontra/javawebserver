@@ -22,7 +22,7 @@ public class ConfigurationManager {
     }
     //This will be used to load configuration file by the path provider
     public void loadConfigurationFile(String filePath)  {
-        FileReader fileReader = null;
+        FileReader fileReader;
         try {
             fileReader = new FileReader(filePath);
         } catch (FileNotFoundException e) {
@@ -37,7 +37,7 @@ public class ConfigurationManager {
       }catch(IOException e){
             throw new HttpConfigurationException(e);
       }
-        JsonNode config = null;
+        JsonNode config;
         try {
             config = Json.parse(buffer.toString());
         } catch (JsonProcessingException e) {

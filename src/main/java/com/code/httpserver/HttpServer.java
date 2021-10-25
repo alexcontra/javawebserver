@@ -28,7 +28,8 @@ public class HttpServer {
             OutputStream outputStream = socket.getOutputStream();
             //TODO PROCEED READING
             //writing
-            String html = "<html><head><title>Simple JAVA HTTTP SERVER</title></head><body><h1>CONTENT OF HTTP SERVER</h1></body></html>";
+            String html = "<html><head><title>VSS PROJECT</title></head><body><h1>CONTENT OF HTTP SERVER</h1></body></html>";
+            //the end carriage return and line feed , we need this to check the message in our outputstream
             final String CRLF = "\n\r"; //13 ,10
             String response = "HTTP/1.1 200 OK"+CRLF + "CONTENT-LENGHT: "+html.getBytes().length+CRLF + CRLF+html+CRLF;//Status line : HTTP  VERSION-> RESPONSE -> CODE -> RESPONSE_MESSAGE
             outputStream.write(response.getBytes());

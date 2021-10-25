@@ -1,6 +1,5 @@
 package com.code.httpserver.http;
 
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -21,18 +20,22 @@ class HttpParserTest {
         HttpRequest request = null;
         try {
             request = httpParser.parseHttpRequest(generateValidTestCase());
-            assertEquals(request.getMethod(),HttpMethod.GET);
-        }catch (HttpPraseException e){
+
+        }catch (HttpParseException e){
             fail(e);
         }
-
+        assertNotNull(request);
+        assertEquals(request.getMethod(),HttpMethod.GET);
+        assertEquals(request.getRequestTarget(),"/");
+        assertEquals(request.getOriginalHttpVersion(), "HTTP/1.1");
+        assertEquals(request.getBestCompatibleHttpVersion(), HttpVersion.HTTP_1_1);
     }
      @Test
     void parseHttpRequestBadMethod(){
          try {
              HttpRequest request = httpParser.parseHttpRequest(generateBadTestCase1());
             fail("error");
-         } catch (HttpPraseException e) {
+         } catch (HttpParseException e) {
              assertEquals(e.getErrorStatus(),HttpStatusCodes.SERVER_ERROR_501_NOT_IMPLEMENTED);
          }
     }
@@ -41,7 +44,7 @@ class HttpParserTest {
         try {
             HttpRequest request = httpParser.parseHttpRequest(generateBadTestCase2());
             fail("error");
-        } catch (HttpPraseException e) {
+        } catch (HttpParseException e) {
             assertEquals(e.getErrorStatus(),HttpStatusCodes.SERVER_ERROR_501_NOT_IMPLEMENTED);
         }
     }
@@ -50,7 +53,7 @@ class HttpParserTest {
         try {
             HttpRequest request = httpParser.parseHttpRequest(generateBadTestCase3());
             fail("error");
-        } catch (HttpPraseException e) {
+        } catch (HttpParseException e) {
             assertEquals(e.getErrorStatus(),HttpStatusCodes.CLIENT_ERROR_400_BAD_REQUEST);
         }
     }
@@ -59,7 +62,7 @@ class HttpParserTest {
         try {
             HttpRequest request = httpParser.parseHttpRequest(generateBadTestCase4());
             fail("error");
-        } catch (HttpPraseException e) {
+        } catch (HttpParseException e) {
             assertEquals(e.getErrorStatus(),HttpStatusCodes.CLIENT_ERROR_400_BAD_REQUEST);
         }
     }
@@ -68,7 +71,7 @@ class HttpParserTest {
         try {
             HttpRequest request = httpParser.parseHttpRequest(generateBadTestCase5());
             fail("error");
-        } catch (HttpPraseException e) {
+        } catch (HttpParseException e) {
             assertEquals(e.getErrorStatus(),HttpStatusCodes.CLIENT_ERROR_400_BAD_REQUEST);
         }
     }

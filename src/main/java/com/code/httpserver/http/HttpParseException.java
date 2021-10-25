@@ -1,9 +1,9 @@
 package com.code.httpserver.http;
 
-public class HttpPraseException extends Exception{
+public class HttpParseException extends Exception{
     private HttpStatusCodes errorStatus;
 
-    public HttpPraseException(HttpStatusCodes errorStatus) {
+    public HttpParseException(HttpStatusCodes errorStatus) {
         super(errorStatus.MESSAGE);
         this.errorStatus = errorStatus;
     }

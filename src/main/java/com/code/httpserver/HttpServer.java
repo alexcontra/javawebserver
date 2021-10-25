@@ -2,43 +2,32 @@ package com.code.httpserver;
 
 import com.code.httpserver.config.Configuration;
 import com.code.httpserver.config.ConfigurationManager;
+import com.code.httpserver.core.ServerListenerThread;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.ServerSocket;
-import java.net.Socket;
+
+import org.slf4j.Logger;
 
 /*
 We'll consider this class as  a driver class
 */
 public class HttpServer {
+    private final static Logger LOGGER =  LoggerFactory.getLogger(HttpServer.class);
     public static void main(String[] args) {
-        System.out.println("SERVER STARTING...");
+        LOGGER.info("SERVER STARTING...");
         ConfigurationManager.getInstance().loadConfigurationFile("src/main/resources/http.json");
         Configuration config = ConfigurationManager.getInstance().getCurrentConfiguration();
-        System.out.println("USING PORT: "+config.getPort());
-        System.out.print("USING WEBROOT:"+config.getWebroot());
+        LOGGER.info("USING PORT: "+config.getPort());
+        LOGGER.info("USING WEBROOT:"+config.getWebroot());
 
+        ServerListenerThread serverListenerThread = null;
         try {
-            ServerSocket serverSocket  = new ServerSocket(config.getPort());
-            //prompt the socket and accept any connections
-            Socket socket =   serverSocket.accept();
-           InputStream inputStream = socket.getInputStream();
-            OutputStream outputStream = socket.getOutputStream();
-            //TODO PROCEED READING
-            //writing
-            String html = "<html><head><title>VSS PROJECT</title></head><body><h1>CONTENT OF HTTP SERVER</h1></body></html>";
-            //the end carriage return and line feed , we need this to check the message in our outputstream
-            final String CRLF = "\n\r"; //13 ,10
-            String response = "HTTP/1.1 200 OK"+CRLF + "CONTENT-LENGHT: "+html.getBytes().length+CRLF + CRLF+html+CRLF;//Status line : HTTP  VERSION-> RESPONSE -> CODE -> RESPONSE_MESSAGE
-            outputStream.write(response.getBytes());
-            inputStream.close();
-            outputStream.close();
-            socket.close();
-            serverSocket.close();
+            serverListenerThread = new ServerListenerThread(config.getPort(), config.getWebroot());
+            serverListenerThread.start();
         } catch (IOException e) {
             e.printStackTrace();
+            //TODO HANDLE
         }
     }
 }

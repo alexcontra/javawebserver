@@ -44,5 +44,10 @@
             <version>RELEASE</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>pmd</groupId>
+            <artifactId>pmd-jdk14</artifactId>
+            <version>4.2.5</version>
+        </dependency>
     </dependencies>
 </project>

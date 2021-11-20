@@ -1,0 +1,3 @@
+As we can se in this repository we implemented a java webserver.In this package you'll find the static and dynamic analysis above our code.
+    If we look at the static analysis we should observe that we have a lot of warnings, 72 more precisely, starting from fields which can be converted to local variables to redundant locals up to empty methods. Based on this analaysis we should consider rechecking our implementation and change it with the suggestions from static analysis.
+    Also we should have a look around to the dynamic analysis as well because there we can se clearly the threads, our CPU usage and memory usage more precisely(check the dynamic_analysis subpackage to see an example which I did run above my code). 

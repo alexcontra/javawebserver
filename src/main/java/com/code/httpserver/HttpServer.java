@@ -1,5 +1,6 @@
 package com.code.httpserver;
 
+import com.code.httpserver.GUI.GUI;
 import com.code.httpserver.config.Configuration;
 import com.code.httpserver.config.ConfigurationManager;
 import com.code.httpserver.core.ServerListenerThread;
@@ -15,6 +16,7 @@ We'll consider this class as  a driver class
 public class HttpServer {
     private final static Logger LOGGER =  LoggerFactory.getLogger(HttpServer.class);
     public static void main(String[] args) {
+        GUI UI = new GUI();
         LOGGER.info("SERVER STARTING...");
         ConfigurationManager.getInstance().loadConfigurationFile("src/main/resources/http.json");
         Configuration config = ConfigurationManager.getInstance().getCurrentConfiguration();

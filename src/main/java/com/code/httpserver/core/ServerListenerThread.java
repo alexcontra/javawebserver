@@ -30,7 +30,7 @@ public class ServerListenerThread extends Thread{
                 //prompt the socket and accept any connections
                 Socket socket =   serverSocket.accept();
                 HttpConnectionWorkThread workThread = new HttpConnectionWorkThread(socket);
-                workThread.start();
+                workThread.run();
             }
         } catch (IOException e) {
             LOGGER.info("PROBLEM WITH SOCKET",e);

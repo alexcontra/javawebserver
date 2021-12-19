@@ -48,9 +48,11 @@ public class HttpConnectionWorkThread extends Thread {
                         </p>
                           
                         <button onclick = "gfg_Run()"> 
-                            Change Color
+                            Change Color1
                         </button>
-                          
+                         <button onclick = "gfg_Run2()"> 
+                            Change Color2
+                        </button>
                         <p id = "GFG_DOWN" style =
                             "color:green; font-size: 20px; font-weight: bold;">
                         </p>
@@ -70,6 +72,10 @@ public class HttpConnectionWorkThread extends Thread {
                                 changeColor('yellow');
                                 el_down.innerHTML = "Background Color changed";
                             }         
+                              function gfg_Run2() {
+                                changeColor('red');
+                                el_down.innerHTML = "Background Color changed";
+                            }         
                         </script> 
                     </body> 
                 </html> 
@@ -85,7 +91,6 @@ public class HttpConnectionWorkThread extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
             LOGGER.info("THERE IS A PROBLEM WITH THE COMMUNICATION",e);
-            //TODO HANDLE
         } finally {
             if (inputStream != null) {
                 try {
@@ -105,7 +110,7 @@ public class HttpConnectionWorkThread extends Thread {
                 } catch (IOException e) {
                 }
 
-            }//<html><head><title>VSS PROJECT</title></head><body><h1>VSS PROJECT</h1><h2>THIS IS AN HTTP SERVER IMPLEMENTED IN JAVA</h2></body></html>
+            }
         }
     }
 }

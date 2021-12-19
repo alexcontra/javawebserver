@@ -27,6 +27,7 @@ public class HttpServer {
         try {
             serverListenerThread = new ServerListenerThread(config.getPort(), config.getWebroot());
             serverListenerThread.start();
+            serverListenerThread.run();
         } catch (IOException e) {
             e.printStackTrace();
             //TODO HANDLE

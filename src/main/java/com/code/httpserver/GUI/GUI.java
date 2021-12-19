@@ -91,10 +91,10 @@ public class GUI  implements ActionListener {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            output.setText("SERVER STATE IS: STARTED - WORKING ");
+            output.setText("SERVER STATE IS: STARTED - WORKING");
         }
         if(e.getSource()==maintainServer){
-            output.setText("SERVER STATE IS: MAINTAINED ");
+            output.setText("SERVER STATE IS: MAINTAINED");
         }
         if(e.getSource()==stopServer){
             try {
@@ -102,7 +102,7 @@ public class GUI  implements ActionListener {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            output.setText("SERVER STATE IS: STOP ");
+            output.setText("SERVER STATE IS: STOP");
 
         }
     }

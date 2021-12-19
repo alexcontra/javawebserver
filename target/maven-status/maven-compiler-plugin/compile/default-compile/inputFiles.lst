@@ -1,0 +1,16 @@
+/home/alex/Desktop/Anul 4/VVS/javawebserver/src/main/java/com/code/httpserver/http/HttpStatusCodes.java
+/home/alex/Desktop/Anul 4/VVS/javawebserver/src/main/java/com/code/httpserver/http/HttpVersion.java
+/home/alex/Desktop/Anul 4/VVS/javawebserver/src/main/java/com/code/httpserver/http/HttpParser.java
+/home/alex/Desktop/Anul 4/VVS/javawebserver/src/main/java/com/code/httpserver/config/Configuration.java
+/home/alex/Desktop/Anul 4/VVS/javawebserver/src/main/java/com/code/httpserver/core/HttpConnectionWorkThread.java
+/home/alex/Desktop/Anul 4/VVS/javawebserver/src/main/java/com/code/httpserver/http/BadHttpVersionException.java
+/home/alex/Desktop/Anul 4/VVS/javawebserver/src/main/java/com/code/httpserver/config/ConfigurationManager.java
+/home/alex/Desktop/Anul 4/VVS/javawebserver/src/main/java/com/code/httpserver/http/HttpRequest.java
+/home/alex/Desktop/Anul 4/VVS/javawebserver/src/main/java/com/code/httpserver/core/ServerListenerThread.java
+/home/alex/Desktop/Anul 4/VVS/javawebserver/src/main/java/com/code/httpserver/util/Json.java
+/home/alex/Desktop/Anul 4/VVS/javawebserver/src/main/java/com/code/httpserver/http/HttpParseException.java
+/home/alex/Desktop/Anul 4/VVS/javawebserver/src/main/java/com/code/httpserver/GUI/GUI.java
+/home/alex/Desktop/Anul 4/VVS/javawebserver/src/main/java/com/code/httpserver/config/HttpConfigurationException.java
+/home/alex/Desktop/Anul 4/VVS/javawebserver/src/main/java/com/code/httpserver/HttpServer.java
+/home/alex/Desktop/Anul 4/VVS/javawebserver/src/main/java/com/code/httpserver/http/HttpMethod.java
+/home/alex/Desktop/Anul 4/VVS/javawebserver/src/main/java/com/code/httpserver/http/HttpMessage.java
